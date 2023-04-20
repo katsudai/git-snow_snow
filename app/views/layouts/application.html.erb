@@ -2,15 +2,69 @@
 <html>
   <head>
     <title>SnowSnow</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+    <div class="wrapper">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+          <div class="container">
+            <%= link_to "snow_snow", root_path, class: "navbar-brand" %>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to "会員一覧", admin_users_path, class: "nav-link text-light" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link text-light" %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-light" %>
+                </li>
+              <% elsif user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to "About", homes_about_path, class: "nav-link text-light" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-light" %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to "About", homes_about_path, class: "nav-link text-light" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-light" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_user_session_path, class: "nav-link text-light" %>
+                </li>
+              <% end %>
+            </div>
+          </div>    
+        </nav>
+      </header>
+      <main class="inner">
+        <div class="text-center p-4">
+          <div class="">
+            <%= flash[:notice] %>
+          </div>
+        </div>
+        <%= yield %>
+      </main>
+      <footer class="bg-dark text-white pt-5 pb-4 w-100">
+        <div class="container">
+          <p>snow_snow home</p>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>

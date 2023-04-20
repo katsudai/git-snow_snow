@@ -1,0 +1,50 @@
+<p id="notice"></p>
+<div class="container d-flex justify-content-center align-items-start border-bottom py-5">
+  <%= image_tag current_user.get_profile_image(100,100), class: "rounded-circle" %>
+  <h1 class="p-4"><%= current_user.name %></h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-10 px-5 px-sm-0 mx-auto text-center shadow-lg rounded px-0 my-3">
+      
+      <div class="alert alert-dark mb-3" role="alert">
+        <h3>新規投稿</h3>
+      </div>
+      
+      <%= form_with model: @post, url: posts_path, method: :POST do |f| %>
+
+      <div class="form-body p-4">
+          
+        <div class="input-group flex-nowrap mb-4">
+          <label class="form-label mb-0 col-3">画像</label>
+          <span class="input-group-text"><i class="fas fa-plus"></i></span>
+          <%= f.file_field :image, accept: "image/*", autofocus: true, autocomplete: "image", class: "col-5 pl-1" %>
+        </div>
+        
+        <div class="input-group flex-nowrap mb-4">
+          <label class="form-label mb-0 col-3">本文</label>
+          <span class="input-group-text"><i class="fas fa-plus"></i></span>
+          <%= f.text_area :body, autofocus: true, autocomplete: "body", class: "col-5" %>
+        </div>
+        
+        <div class="input-group flex-nowrap mb-4">
+          <label class="form-label mb-0 col-3">タグ</label>
+          <span class="input-group-text"><i class="fas fa-plus"></i></span>
+          <%= f.text_field :tag_names, placeholder: "空白スペースで区切って入力してください", autocomplete: "tag_names", class: "col-5" %>
+        </div>
+        
+        <div class="input-group flex-nowrap mb-4">
+          <label class="form-label mb-0 col-3">場所</label>
+          <span class="input-group-text"><i class="fas fa-plus"></i></span>
+          <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "col-5" %>
+        </div>
+        
+      </div>
+      <div class="text-center mb-4">
+        <%= f.submit "投稿", class: "btn btn-success" %>
+      </div>
+      
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row border border-light rounded-pill shadow mb-5 bg-white rounded">
+    <div class="col-12 text-center">
+      <span class="col-6">
+        <%= link_to "投稿する", new_post_path, class: "btn btn-dark text-light m-2" %>
+      </span>
+      <span class="col-6">
+        <%= link_to "投稿一覧", posts_path, class: "btn btn-dark text-light m-2" %>
+      </span>
+      <span class="col-6">
+        人気の投稿
+      </span>
+      <% if user_signed_in? %>
+        <span class="col-6">
+          <%= link_to "マイページ", user_path(current_user), class: "btn btn-dark text-light m-2" %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <h4 class="text-center">タグ</h4>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav flex-column">             
+                         
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="col-9 p-2 shadow mb-5 bg-white rounded">
+      <h1 class="text-center">snow_snowへようこそ</h1>
+      <p class="text-center">～お気に入りの写真を投稿して仲間を作ろう～</p>
+      <%= image_tag '1485-0.JPG', size: "800x600", style: "border-radius: 50%; width: 800px; height: 600px; object-fit:cover;" %>
+    </div>
+  </div>
+</div>

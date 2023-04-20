@@ -1,3 +1,32 @@
+html,body{
+	height:100%;
+}
+.wrapper{
+     width: 100%;
+     position: relative;
+     min-height: 100%;
+}
+
+.inner{
+     padding-bottom:100px; /*フッターの高さと同じにする*/
+}
+
+footer{
+     height:100px;
+     position:absolute;
+     bottom:0;
+}
+
+.img1{
+     background-image: url(819-0.JPG);
+     height: 350px;
+     background-size: cover;
+     background-position: center center;
+     width: 100%;
+     position: relative;
+    
+}
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

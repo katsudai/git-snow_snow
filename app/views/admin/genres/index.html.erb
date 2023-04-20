@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="alert alert-dark my-3" role="alert">
+      <h3>ジャンル一覧</h3>
+    </div>
+  </div>
+  <div class="row my-2">
+    <div class="col-2 my-3">
+      <h4>ジャンル名</h4>
+    </div>
+    <div class="col-4 my-2">
+    <%= form_with model: @genre, url: admin_genres_path, method: :POST do |f| %>
+      <div class="input-group mb-3">
+        <%= f.text_field :name, class: "form-control form-control-lg" %>
+        <div class="row mx-4">
+          <%= f.submit '登録', class: "btn btn-success btn-lg" %>
+        </div>
+      </div>
+    <% end %>
+    </div>
+    <div class="col-4 my-2">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="col-8 table-dark text-right">ジャンル</th>
+            <th class="col-4 table-dark"></th>
+          </tr>
+        </thead>
+        <% @genres.each do |genre| %>
+        <tbody>
+          <tr>
+            <th class="text-center"><%= genre.name %></th>
+            <th class="text-center"><%= link_to "削除する", admin_genre_path(genre),method: :DELETE, class: "btn btn-danger" %></th>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

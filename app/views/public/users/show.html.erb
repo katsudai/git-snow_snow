@@ -1,0 +1,30 @@
+<div class="container d-flex justify-content-around align-items-center border-bottom py-5">
+  <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
+  <h1><%= @user.name %></h1>
+  <% if @user.id == current_user.id %>
+    <div class="mt-auto">
+      <%= link_to "プロフィール編集", edit_user_path(@user), class: "text-dark" %>
+    </div>
+  <% end %>
+  <div class="mt-auto">
+    <%= link_to "退会はこちら", users_unsubscribe_path, class: "btn btn-outline-danger" %>
+  </div>
+</div>
+<div class="container d-flex justify-content-around align-items-center border-bottom py-5">
+  <table class="table table-dark table-bordered">
+    <tbody>
+      <tr>
+        <th>行動エリア</th>
+        <td><%= @user.action_range %></td>
+      </tr>
+      <tr>
+        <th>ジャンル</th>
+        <td><%= @user.genre.name %></td>
+      </tr>
+      <tr>
+        <th>自己紹介</th>
+        <td><%= @user.introduction %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
