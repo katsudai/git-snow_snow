@@ -14,15 +14,24 @@ Rails.application.routes.draw do
     patch 'users/withdraw' => 'users#withdraw'
     
     resources :users, only: [:show, :edit, :update] do
-     resources :relationships, only: [:create, :destroy]
-     get 'relationships/followings' => 'relationships#followings'
-     get 'relationships/followers' => 'relationships#followers'
+      member do
+        get 'favorites'
+        get 'ranking'
+      end
+      resources :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings'
+      get 'followers' => 'relationships#followers'
     end
     
     resources :posts, only: [:new, :index, :show, :create, :destroy] do
+      collection do
+        get 'search' => 'posts#search'
+        get 'ranking' => 'posts#ranking'
+      end
       resource  :favorites, only: [:create, :destroy]
-      resources :post_comments, only: [:create, :destroy]
+      resources :post_comments, only: [:create]
     end
+    
     
     resources :messages, only: [:create]
     
@@ -37,15 +46,20 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    resources :users, only: [:index, :show, :edit, :update]
-    get 'users/unsubscribe' => 'users#unsubscribe'
-    get 'users/withdraw' => 'users#withdraw'
+    
+    resources :users, only: [:index, :show, :edit, :update] do
+      member do
+        get 'unsubscribe'
+        patch 'withdraw'
+        patch 'restoration'
+      end
+    end
     
     resources :genres, only: [:index, :create, :destroy]
     
-    resources :posts, only: [:index, :show, :destroy]
-    
-    resources :post_comments, only: [:destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+     resources :post_comments, only: [:destroy]
+    end
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

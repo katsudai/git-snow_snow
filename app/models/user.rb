@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :entries
   has_many :messages
   has_many :favorites
+  has_many :favorite_posts, through: :favorites, source: :post
   has_many :posts
   has_many :post_comments
   
@@ -29,6 +30,21 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+  # フォローしたときの処理
+  def follow(user_id)
+    relationships.create(followed_id: user_id)
+  end
+  
+  # フォローを外したときの処理
+  def unfollow(user_id)
+    relationships.find_by(followed_id: user_id).destroy
+  end
+  
+  # フォローしているかの判定
+  def following?(user)
+    followings.include?(user)
+  end
+  
   enum action_range: {
      北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
      茨城県:8,栃木県:9,群馬県:10,埼玉県:11,千葉県:12,東京都:13,神奈川県:14,

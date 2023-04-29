@@ -12,20 +12,22 @@ class Post < ApplicationRecord
   
   has_one_attached :image
   
-  def get_image(width, height)
-    unless image.attached?
-      file_path = Rails.root.join('app/assets/images/default-image.jpg')
-      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
-    image.variant(resize_to_limit: [width, height]).processed
+  def self.search(keyword)
+    where('body LIKE ?', "#{keyword}%")
+  end
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
   end
   
   def save_with(sent_tags)
     
   # タグが存在していれば、タグの名前を配列として全て取得
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    
   # 現在取得したタグから送られてきたタグを除いてoldtagとする
     old_tags = current_tags - sent_tags
+    
   # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
     new_tags = sent_tags - current_tags
 

@@ -1,0 +1,24 @@
+<% if users.exists? %>
+  <% users.each do |user| %>
+    <div class="container d-flex justify-content-around align-items-center py-5">
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr class="table-active">
+            <th colspan="3">name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center">
+            <td><%= user.name %></td>
+            <td>フォロー数: <%= user.followings.count %></td>
+            <td>フォロワー数: <%= user.followers.count %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+<% else %>
+  <div class="text-center p-4">
+    <h4>ユーザーはいません</h4>
+  </div>
+<% end %>

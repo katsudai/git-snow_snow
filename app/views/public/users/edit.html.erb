@@ -18,6 +18,12 @@
         <div class="input-group flex-nowrap mb-4">
           <label class="form-label mb-0 col-3">名前</label>
           <span class="input-group-text"><i class="fas fa-plus"></i></span>
+          <%= f.file_field :profile_image, accept: "image/*", autofocus: true, autocomplete: "profile_image", class: "col-5 pl-1" %>
+        </div>
+          
+        <div class="input-group flex-nowrap mb-4">
+          <label class="form-label mb-0 col-3">名前</label>
+          <span class="input-group-text"><i class="fas fa-plus"></i></span>
           <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "col-5 pl-1" %>
         </div>
         

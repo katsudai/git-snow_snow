@@ -12,14 +12,6 @@ class Public::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :action_range, :introduction, :is_deleted, :genre_id])
   end
   
-  def after_sign_in_path_for(resource)
-    root_path
-  end
-  
-  def after_sign_out_path_for(resource)
-    new_user_session_path
-  end
-  
   # GET /resource/sign_up
   # def new
   #   super

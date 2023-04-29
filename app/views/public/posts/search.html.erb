@@ -1,0 +1,29 @@
+<div class="container">
+  <%= render 'public/posts/toplist'%>
+  <div class="row p-2">
+    <div class="col-12">
+      <%= form_with model: @search, url: search_posts_path, local: true, method: :get do |f| %>
+        <%= f.text_field :keyword , placeholder: "投稿キーワード" %>
+        <%= f.submit '検索' %>
+      <% end %>
+    </div>
+    <div class="col-12 pt-4">
+      <h5>タグ検索</h5>
+    </div>
+    <div>
+      <% @tag_list.each do |list| %>
+        <%= link_to list.name, search_posts_path(tag_id: list.id) %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="row p-2">
+    <% if @keyword.present? %>
+      <h2><%= "「#{@keyword}」" %></h2>の検索結果
+    <% end %>
+  </div>
+  
+  <div class="row">
+    <%= render 'list', posts: @search_posts %>
+  </div>
+</div>
