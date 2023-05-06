@@ -6,7 +6,9 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-10 col-lg-10 px-5 px-sm-0 mx-auto text-center shadow-lg rounded px-0 my-3">
-      
+    <% if @user.email == "guest@gmail.com" %>
+      <p>ゲストユーザーはユーザー情報の編集ができません</p>
+    <% else %>
       <div class="alert alert-dark mb-3" role="alert">
         <h3>プロフィール編集</h3>
       </div>
@@ -57,6 +59,7 @@
       </div>
       
       <% end %>
+    <% end %>
     </div>
   </div>
 </div>

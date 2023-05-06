@@ -14,6 +14,23 @@
     <% end %>
   <% end %>
   
+  <div class="mt-auto">
+    <% if @user.id == current_user.id %>
+      <h2><%= @user.email %></h2>
+    <% else %>
+      <% if @isRoom == true %>
+        <p><%= link_to 'DMへ', room_path(@roomId), class: "btn btn-dark" %></p>
+      <% else %>
+        <%= form_for @room do |f| %>
+          <%= fields_for @entry do |e|%>
+              <% e.hidden_field :user_id, value: @user.id %>
+          <% end %>
+        <%= f.submit "DMを開始する", class: "btn btn-dark"%>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
   <% if @user.id == current_user.id %>
     <div class="mt-auto">
       <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-dark" %>
@@ -31,23 +48,40 @@
     <tbody>
       <tr>
         <th></th>
-        <td class="d-flex justify-content-around">
-          <%= link_to "フォロー一覧", user_followings_path(@user.id), class: "text-light" %>
-          <%= link_to "フォロワー一覧", user_followers_path(@user.id), class: "text-light" %>
+        <td colspan="3" class="d-flex justify-content-around">
+          <%= link_to "フォロー一覧", user_followings_path(@user.id), class: "text-decoration-none text-light" %>
+          <%= link_to "フォロワー一覧", user_followers_path(@user.id), class: "text-decoration-none text-light" %>
         </td>
       </tr>
-      <tr>
-        <th>行動エリア</th>
-        <td><%= @user.action_range %></td>
-      </tr>
-      <tr>
-        <th>ジャンル</th>
-        <td><%= @user.genre.name %></td>
-      </tr>
-      <tr>
-        <th>自己紹介</th>
-        <td><%= @user.introduction %></td>
-      </tr>
+    </tbody>
+    <tbody>
+      <% if @user.email == "guest@gmail.com" %>
+        <tr>
+          <th>行動エリア</th>
+          <td>東京</td>
+        </tr>
+        <tr>
+          <th>ジャンル</th>
+          <td>スノーボード</td>
+        </tr>
+        <tr>
+          <th>自己紹介</th>
+          <td>よろしくお願いします</td>
+        </tr>
+      <% else %>
+        <tr>
+          <th>行動エリア</th>
+          <td><%= @user.action_range %></td>
+        </tr>
+        <tr>
+          <th>ジャンル</th>
+          <td><%= @user.genre.name %></td>
+        </tr>
+        <tr>
+          <th>自己紹介</th>
+          <td><%= @user.introduction %></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>

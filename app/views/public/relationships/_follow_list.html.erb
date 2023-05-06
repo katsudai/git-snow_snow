@@ -9,7 +9,11 @@
         </thead>
         <tbody>
           <tr class="text-center">
-            <td><%= user.name %></td>
+            <td>
+              <%= link_to user_path(user), class: "text-decoration-none text-dark" do %>
+                <%= user.name %>
+              <% end %>
+            </td>
             <td>フォロー数: <%= user.followings.count %></td>
             <td>フォロワー数: <%= user.followers.count %></td>
           </tr>

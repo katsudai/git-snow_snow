@@ -36,8 +36,11 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
     
     resources :rooms, only: [:index, :show, :create]
+    
+    devise_scope :user do
+      post 'guest_sign_in', to: 'sessions#guest_sign_in'
+    end
   end
-  
   
   
   # 管理者用
