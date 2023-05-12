@@ -37,7 +37,7 @@
     </div>
   <% end %>
   
-  <% if @user.id == current_user.id %>
+  <% if @user.id == current_user.id && @user.email != "guest@gmail.com" %>
     <div class="mt-auto">
       <%= link_to "退会はこちら", users_unsubscribe_path, class: "btn btn-outline-danger" %>
     </div>

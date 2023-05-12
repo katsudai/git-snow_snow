@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-4"></div>
-    <div class="col-4 alert alert-dark mb-3 text-center" role="alert">
+    <div class="col-4 alert mb-3 text-center text-light bg-dark" role="alert">
       <h6>会員の方はこちらからログイン</h6>
     </div>
   </div>
@@ -10,11 +10,13 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto text-center shadow-lg rounded px-0 my-3">
       
-      <div class="alert alert-dark mb-3" role="alert">
+      <div class="alert mb-3 text-light bg-dark" role="alert">
         <h3>ログイン</h3>
       </div>
       
       <%= form_with model: @user, url: user_session_path do |f| %>
+      <%= render "public/shared/error_messages", resource: @user %>
+      
       <div class="form-body px-4 pt-4">
         <div class="input-group flex-nowrap my-4">
           <div class="input-group-prepend">
@@ -36,7 +38,7 @@
             <%= f.label :remember_me %>
           </div>
         <% end %>
-        <% render "public/shared/links" %>
+        
       </div>
       <div class="text-center mb-4">
         <%= f.submit "ログイン", class: "btn btn-success" %>
@@ -44,8 +46,8 @@
       <% end %>
     </div>  
   </div>
-  <div class="col-4 alert alert-dark mb-3 text-center my-3" role="alert">
-    <h6>会員がお済でない方</h6>
+  <div class="col-4 alert alert mb-3 text-light bg-dark text-center my-3" role="alert">
+    <h6>会員登録がお済でない方</h6>
   </div>
   <p>
     <%= link_to "こちら", new_user_registration_path %>

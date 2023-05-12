@@ -12,7 +12,9 @@
     </div>
     <div>
       <% @tag_list.each do |list| %>
-        <%= link_to list.name, search_posts_path(tag_id: list.id) %>
+        <%= link_to search_posts_path(tag_id: list.id), class: "btn btn-dark" do %>
+        <%= "#{list.name}(#{list.posts.count})" %>
+        <% end %>
       <% end %>
     </div>
   </div>

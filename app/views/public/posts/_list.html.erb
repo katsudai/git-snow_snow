@@ -1,5 +1,5 @@
-<% posts.each_with_index do |post,i| %>
-<div class="col-8 border-bottom py-3">
+<% posts.each do |post| %>
+<div class="col-12 border border-light rounded shadow py-3 m-2">
   <div class="row d-flex justify-content-start align-items-center p-2">
     <div class="p-2">
       <%= link_to user_path(post.user) do %>
@@ -9,16 +9,16 @@
     <h1><%= post.user.name %></h1>
   </div>
   <div class="row d-flex justify-content-around align-items-center p-2">
-    <div class="col-8 p-2">
+    <div class="col-6 p-2">
       <%= link_to post_path(post.id), class: "text-decoration-none" do %>
         <% if post.image.attached? %>
-          <%= image_tag post.image, size: "400x400" %>
+          <%= image_tag post.image, size: "500x400" %>
         <% else %>
           <%= image_tag 'default-image.jpg', size: "400x400" %>
         <% end %>
       <% end %>
     </div>
-    <div class="col-4 p-2">
+    <div class="col-6 p-2 text-center">
       <h3>
         <%= link_to post_path(post.id), class: "text-decoration-none text-dark" do %>
           <%= post.body %>
@@ -26,11 +26,14 @@
       </h3>
     </div>
   </div>
-  <div class="row d-flex align-items-end ps-6">
+  <div class="row d-flex align-items-end p-2">
     <i class="fas fa-tag"></i>
     <%= post.tags.map(&:name).join(', ') %>
   </div>
-  <div class="row d-flex justify-content-start align-items-center p-2">
+  <div class="row d-flex align-items-end p-2">
+  <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
+  </div>
+  <div class="row d-flex justify-content-start p-2">
     <% if post.favorited_by?(current_user) %>
       <p>
         <%= link_to post_favorites_path(post), method: :delete, class: "text-decoration-none" do %>
@@ -46,49 +49,7 @@
         <%= post.favorites.count %> いいね
       </p>
     <% end %>
-    <p class="p-4">コメント件数：<%= post.post_comments.count %></p>
+    <p class="pl-2">コメント件数：<%= post.post_comments.count %></p>
   </div>
-</div>
-<div class="col-4 border-bottom pt-5">
-  <!-- 住所表示エリア -->
-  <div class="pt-5">
-    <h5>住所</h5>
-  </div>
-  <p><%= post.address %></p>
-  
-  <!-- Googleマップ表示エリア(地図を表示) -->
-  <div id="map<%= i %>" style="height: 350px;width: 350px;"></div>
-  
-  <!-- Googleマップ表示用の Javascript -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap<%= i %>" async defer></script>
-
-  <script>
-    function initMap<%= i %>(){
-      
-      // 地図の位置情報(緯度・経度)を取得
-      let mapPosition = {lat: <%= post.latitude || 0 %> , lng: <%= post.longitude || 0 %> };
-      console.log(mapPosition)
-      console.log(<%= post.id %>)
-      let map = new google.maps.Map(document.getElementById('map<%= i %>'), {
-        zoom: 15,
-        center: mapPosition
-      });
-      let transitLayer = new google.maps.TransitLayer();
-      transitLayer.setMap(map);
-      let contentString = '【住所】<%= post.address %>';
-      let infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
-      let marker = new google.maps.Marker({
-        position: mapPosition,
-        map: map,
-        title: contentString
-      });
-      marker.addListener('click', function(){
-        infowindow.open(map, marker);
-      });
-    }
-    initMap<%= i %>();
-  </script>
 </div>
 <% end %>

@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-10 col-lg-10 px-5 px-sm-0 mx-auto text-center shadow-lg rounded px-0 my-3">
       
-      <div class="alert alert-dark mb-3" role="alert">
+      <div class="alert alert text-light bg-dark mb-3" role="alert">
         <h3>新規会員登録</h3>
       </div>
       
@@ -13,37 +13,37 @@
       <div class="form-body p-4">
         <div class="input-group flex-nowrap mb-4">
           <label class="form-label mb-0 col-3">名前</label>
-          <span class="input-group-text"><i class="fas fa-plus"></i></span>
+          <span class="input-group-text text-light bg-dark"><i class="fas fa-plus"></i></span>
           <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ニックネームでも可", class: "col-5 pl-1" %>
         </div>
         
         <div class="input-group flex-nowrap mb-4">
           <label class="form-label mb-0 col-3">メールアドレス</label>
-          <span class="input-group-text"><i class="fas fa-plus"></i></span>
+          <span class="input-group-text text-light bg-dark"><i class="fas fa-plus"></i></span>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-5" %>
         </div>
         
         <div class="input-group flex-nowrap mb-4">
           <label class="form-label mb-0 col-3">行動エリア</label>
-          <span class="input-group-text"><i class="fas fa-plus"></i></span>
+          <span class="input-group-text text-light bg-dark"><i class="fas fa-plus"></i></span>
           <%= f.select :action_range, User.action_ranges.keys, {prompt: "選択してください"}, autofocus: true, autocomplete: "action_range", class: "col-5" %>
         </div>
         
         <div class="input-group flex-nowrap mb-4">
           <label class="form-label mb-0 col-3">ジャンル</label>
-          <span class="input-group-text"><i class="fas fa-plus"></i></span>
+          <span class="input-group-text text-light bg-dark"><i class="fas fa-plus"></i></span>
           <%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "選択してください"}, autocomplete: "name", class: "col-5" %>
         </div>
         
         <div class="input-group flex-nowrap mb-4">
           <label class="form-label mb-0 col-3">自己紹介</label>
-          <span class="input-group-text"><i class="fas fa-plus"></i></span>
+          <span class="input-group-text text-light bg-dark"><i class="fas fa-plus"></i></span>
           <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class: "col-5" %>
         </div>
         
         <div class="input-group flex-nowrap">
           <label class="form-label mb-0 col-3">パスワード</label>
-          <span class="input-group-text"><i class="fas fa-plus"></i></span>
+          <span class="input-group-text text-light bg-dark"><i class="fas fa-plus"></i></span>
           <%= f.password_field :password, autocomplete: "new-password", class: "col-5" %>
         </div>
         <div class="input-group flex-nowrap mb-2">
@@ -54,7 +54,7 @@
 
         <div class="input-group flex-nowrap mb-4">
           <label class="form-label mb-0 col-3">パスワード確認</label>
-          <span class="input-group-text"><i class="fas fa-plus"></i></span>
+          <span class="input-group-text text-light bg-dark"><i class="fas fa-plus"></i></span>
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-5" %>
         </div>
       </div>
@@ -66,7 +66,7 @@
       <% render "public/shared/links" %>
     </div>
   </div>
-  <div class="col-4 alert alert-dark mb-3 text-center my-3" role="alert">
+  <div class="col-4 alert alert text-light bg-dark mb-3 text-center my-3" role="alert">
     <h6>既に登録済の方</h6>
   </div>
   <p>

@@ -1,4 +1,7 @@
 class Admin::UsersController < ApplicationController
+  
+  before_action :authenticate_admin!
+  
   def index
     @users = User.page(params[:page]).per(10)
   end
@@ -15,14 +18,12 @@ class Admin::UsersController < ApplicationController
   def withdraw
     @user = User.find(params[:id])
     @user.update(is_deleted: true)
-    reset_session
     redirect_to admin_users_path
   end
   
   def restoration
     @user = User.find(params[:id])
     @user.update(is_deleted: false)
-    reset_session
     redirect_to admin_users_path
   end
   

@@ -1,4 +1,7 @@
 class Public::PostsController < ApplicationController
+  
+  before_action :authenticate_user!
+  
   def new
     @post = Post.new
   end
@@ -20,6 +23,7 @@ class Public::PostsController < ApplicationController
     @post.save_with(tag_list)
       redirect_to posts_path
     else
+      flash[:notice] = "本文を入力してください"
       render :new
     end
   end

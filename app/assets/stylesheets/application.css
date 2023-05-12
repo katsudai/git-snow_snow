@@ -1,6 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru=&display=swap');
+
+
 html,body{
 	height:100%;
+	
 }
+
 .wrapper{
      width: 100%;
      position: relative;
@@ -9,6 +14,7 @@ html,body{
 
 .inner{
      padding-bottom:100px; /*フッターの高さと同じにする*/
+     
 }
 
 footer{
@@ -21,11 +27,16 @@ footer{
      background-image: url(819-0.JPG);
      height: 350px;
      background-size: cover;
+     background-attachment: fixed;
      background-position: center center;
      width: 100%;
      position: relative;
-    
 }
+
+.sub-title, .title, small, footer{
+  font-family: 'Kiwi Maru', serif;
+}
+
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files

@@ -1,8 +1,10 @@
 class Public::UsersController < ApplicationController
   
+  before_action :authenticate_user!
+  
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.order(created_at: :desc)
     
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
@@ -33,7 +35,8 @@ class Public::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
-      render :show
+      flash[:notice] = "名前またはメールアドレスが未入力です"
+      render :edit
     end
   end
   
@@ -51,12 +54,14 @@ class Public::UsersController < ApplicationController
   def favorites
     @user = User.find(params[:id])
     @favorite_posts = @user.favorite_posts
+    @room = Room.new
   end
   
   #いいねした投稿のうち、いいね数の多い順に取得
   def ranking
     @user = User.find(params[:id])
     @ranking_posts = @user.favorites.group(:post_id).count.sort{|a, b| b.last <=> a.last}.map{|o|Post.find(o.first)}
+    @room = Room.new
   end
   
   

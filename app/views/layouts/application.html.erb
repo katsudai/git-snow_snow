@@ -15,8 +15,9 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
           <div class="container">
             <%= link_to root_path, class: "navbar-brand" do %>
-              snow_snow<i class="fas fa-snowboarding"></i>
+              <h1 class="title">snow_snow</h1>
             <% end %>
+            <i class="fas fa-snowboarding fa-3x" style="color:white;"></i>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -69,7 +70,11 @@
                     <span class="pr-2"><i class="fas fa-sign-in-alt"></span></i>ログイン
                   <% end %>
                 </li>
-                <li><%= link_to 'ゲストログイン（閲覧用）', guest_sign_in_path, class: "nav-link text-light", method: :post %></li>
+                <li>
+                  <%= link_to guest_sign_in_path, class: "nav-link text-primary", method: :post do %>
+                    <span class="pr-2"><i class="fas fa-sign-in-alt" style="color:blue;"></i></span>ゲストログイン（閲覧用）
+                  <% end %>
+                </li>
               <% end %>
             </div>
           </div>    
@@ -79,6 +84,7 @@
         <div class="text-center p-4">
           <div class="">
             <%= flash[:notice] %>
+            <%= alert %>
           </div>
         </div>
         <%= yield %>

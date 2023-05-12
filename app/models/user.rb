@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :genre_id, presence: true
+  
   belongs_to :genre, optional: true
   has_many :entries
   has_many :messages
@@ -45,12 +49,12 @@ class User < ApplicationRecord
     followings.include?(user)
   end
   
+  
   def self.guest
     find_or_create_by!(email: 'guest@gmail.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.password_confirmation = user.password
       user.name = "ゲストユーザー"
-      user.genre.name = "スノーボード"
     end
   end
   

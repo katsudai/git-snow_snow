@@ -51,7 +51,8 @@
       </div>
     </div>
     <div class="col-4 border-bottom pt-5">
-      
+    <% if @post.address.present? %>
+    
       <!-- 住所表示エリア -->
       <div class="pt-5">
         <h5>住所</h5>
@@ -92,6 +93,7 @@
         }
         initMap();
       </script>
+    <% end %>
     </div>
   </div>
   <div class="row">
