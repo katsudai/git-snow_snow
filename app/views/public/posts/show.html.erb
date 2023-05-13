@@ -12,9 +12,9 @@
       <div class="row d-flex justify-content-around align-items-center p-2">
         <div class="col-8 p-2">
           <% if @post.image.attached? %>
-            <%= image_tag @post.image, size: "400x400" %>
+            <%= image_tag @post.image, size: "450x400" %>
           <% else %>
-            <%= image_tag 'default-image.jpg', size: "400x400" %>
+            <%= image_tag 'default-image.jpg', size: "450x400" %>
           <% end %>
         </div>
         <div class="col-4 p-2">
