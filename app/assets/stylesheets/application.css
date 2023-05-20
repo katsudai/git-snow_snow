@@ -37,6 +37,14 @@ footer{
   font-family: 'Kiwi Maru', serif;
 }
 
+.image2 {
+     border-radius: 50%; 
+     width: 800px; 
+     height: 600px; 
+     object-fit:cover;
+     margin: auto;
+     display: block;
+}
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
