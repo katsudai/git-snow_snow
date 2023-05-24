@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2023_04_09_154555) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "tag_id"
     t.text "body", null: false
     t.string "address"
     t.float "latitude"
