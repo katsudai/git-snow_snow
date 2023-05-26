@@ -31,7 +31,7 @@
     <%= post.tags.map(&:name).join(', ') %>
   </div>
   <div class="row d-flex align-items-end p-2">
-  <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
+    <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
   </div>
   <div class="row d-flex justify-content-start p-2">
     <% if post.favorited_by?(current_user) %>

@@ -57,14 +57,6 @@ class Public::UsersController < ApplicationController
     @room = Room.new
   end
   
-  #いいねした投稿のうち、いいね数の多い順に取得
-  def ranking
-    @user = User.find(params[:id])
-    @ranking_posts = @user.favorites.group(:post_id).count.sort{|a, b| b.last <=> a.last}.map{|o|Post.find(o.first)}
-    @room = Room.new
-  end
-  
-  
   private
   
   def user_params
