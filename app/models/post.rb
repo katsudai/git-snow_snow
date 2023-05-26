@@ -15,7 +15,7 @@ class Post < ApplicationRecord
   has_one_attached :image
   
   def self.search(keyword)
-    where('body LIKE ?', "#{keyword}%")
+    where('body LIKE ?', "%#{keyword}%")
   end
 
   def favorited_by?(user)
