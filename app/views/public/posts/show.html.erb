@@ -117,7 +117,10 @@
       
       <div class="p-2">
         <h3><%= post_comment.comment %></h3></br>
-        <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+        <span><%= post_comment.created_at.strftime('%Y/%m/%d') %></span>
+        <% if post_comment.user == current_user %>
+          <span><%= link_to "削除", admin_post_post_comment_path(post_comment.id), method: :delete, class: "btn btn-danger"%></span>
+        <% end %>
       </div>
     <% end %>
   </div>
