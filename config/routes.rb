@@ -29,7 +29,7 @@ Rails.application.routes.draw do
         get 'ranking' => 'posts#ranking'
       end
       resource  :favorites, only: [:create, :destroy]
-      resources :post_comments, only: [:create]
+      resources :post_comments, only: [:create, :destroy]
     end
     
     
